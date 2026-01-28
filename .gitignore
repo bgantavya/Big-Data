@@ -1,0 +1,114 @@
+# Big Data .gitignore
+
+# General
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# R
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+.Rapp.history
+.httr-oauth
+
+# Python/PySpark
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Hadoop
+*.jar
+metastore_db/
+derby.log
+hadoop-logs/
+
+# Spark
+spark-warehouse/
+*.parquet
+*.orc
+*checkpoint/
+*.crc
+
+# Data files (exclude large data files)
+*.csv
+*.tsv
+*.txt
+*.json
+*.xml
+*.avro
+*.dat
+!sample*.csv
+!sample*.txt
+!sample*.json
+!example*.txt
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# SBT (Scala Build Tool)
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# Output directories
+output/
+results/
+_output/
