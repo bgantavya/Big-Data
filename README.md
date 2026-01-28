@@ -21,6 +21,12 @@ This repository serves as a comprehensive learning and tracking resource for stu
 
 ## 🚀 Getting Started
 
+### First Time Setup
+1. **[Setup Guide](./SETUP.md)** - Install and configure R, Hadoop, Spark, and SQL
+2. **[Resources](./RESOURCES.md)** - Curated learning materials and documentation
+3. **[Contributing](./CONTRIBUTING.md)** - Guidelines for adding your own content
+
+### Explore the Sections
 Navigate to each technology folder to explore specific topics and exercises:
 
 ```bash
