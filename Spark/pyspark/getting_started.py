@@ -5,7 +5,7 @@ This script demonstrates basic PySpark operations
 """
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, avg, count, sum as spark_sum
+from pyspark.sql.functions import col, avg, count
 
 def main():
     # Create Spark Session
