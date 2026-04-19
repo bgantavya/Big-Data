@@ -37,7 +37,7 @@ contrast_passes <- 2
 brightness      <- 105
 saturation      <- 108
 sharpen_strength <- 9    
-layout_keyword <- "Layout"   # <-- CHANGE IF NEEDED
+layout_keyword <- "Layout"
 
 build_output_path <- function(name) {
   file.path(output_folder, paste0(name, ".", output_format))
@@ -154,45 +154,68 @@ enhance_image <- function(img, nm) {
   return(img)
 }
 
+process_image <- function(img_path, use_type_detection = FALSE, resize_mode = c("scale", "resize")) {
+  resize_mode <- match.arg(resize_mode)
+  nm <- file_path_sans_ext(basename(img_path))
+
+  if (use_type_detection) {
+    type <- detect_type(nm)
+    cat("\n[", which(img_files == img_path), "/", length(img_files), "]",
+        "Processing:", nm, "| Type:", type, "\n")
+  } else {
+    cat("\n[", which(img_files == img_path), "/", length(img_files), "]",
+        "Processing:", nm, "\n")
+  }
+
+  tryCatch({
+    img  <- image_read(img_path)
+    info <- image_info(img)
+    cat("  Original size:", info$width, "x", info$height, "\n")
+
+    if (resize_mode == "scale") {
+      img <- image_scale(img, as.character(target_width))
+    } else {
+      img <- image_resize(img,
+                          geometry = as.character(target_width),
+                          filter   = "Lanczos")
+    }
+
+    info_new <- image_info(img)
+    cat("  Resized to:  ", info_new$width, "x", info_new$height, "\n")
+
+    if (use_type_detection) {
+      if (detect_type(nm) == "layout") {
+        img <- enhance_layout(img)
+      } else {
+        img <- enhance_schematic(img)
+      }
+    } else {
+      img <- enhance_image(img, nm)
+    }
+
+    out_path <- build_output_path(nm)
+    image_write(img, path = out_path, format = output_format, density = target_dpi)
+    cat("  Saved:", out_path, "\n")
+
+    success_count <<- success_count + 1
+    TRUE
+
+  }, error = function(e) {
+    cat("  SKIPPED (error):", conditionMessage(e), "\n")
+    skip_count <<- skip_count + 1
+    FALSE
+  })
+
+  if (exists("img")) rm(img)
+  gc()
+}
+
 cat("\n--- Processing Images ---\n")
 success_count <- 0
 skip_count    <- 0
 
 for (img_path in img_files) {
-  nm <- file_path_sans_ext(basename(img_path))
-  cat("\n[", which(img_files == img_path), "/", length(img_files), "]",
-      "Processing:", nm, "\n")
-
-  tryCatch({
-
-    # LOAD
-    img      <- image_read(img_path)
-    info     <- image_info(img)
-    cat("  Original size:", info$width, "x", info$height, "\n")
-
-    # RESIZE — width locked, height auto-scales
-    img      <- image_scale(img, as.character(target_width))
-    info_new <- image_info(img)
-    cat("  Resized to:  ", info_new$width, "x", info_new$height, "\n")
-
-    # ENHANCE
-    img <- enhance_image(img, nm)
-
-    # SAVE
-    out_path <- build_output_path(nm)
-    image_write(img, path = out_path, format = output_format, density = target_dpi)
-    cat("  Saved:", out_path, "\n")
-
-    success_count <- success_count + 1
-
-  }, error = function(e) {
-    cat("  SKIPPED (error):", conditionMessage(e), "\n")
-    skip_count <<- skip_count + 1
-  })
-
-  # FREE MEMORY after every image
-  if (exists("img")) rm(img)
-  gc()
+  process_image(img_path, use_type_detection = FALSE, resize_mode = "scale")
 }
 
 for (img_path in img_files) {
