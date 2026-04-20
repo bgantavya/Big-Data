@@ -154,6 +154,7 @@ enhance_image <- function(img, nm) {
   return(img)
 }
 
+# Shared image pipeline reused by both passes.
 process_image <- function(img_path, use_type_detection = FALSE, resize_mode = c("scale", "resize")) {
   resize_mode <- match.arg(resize_mode)
   nm <- file_path_sans_ext(basename(img_path))
