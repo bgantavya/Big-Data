@@ -215,6 +215,7 @@ cat("\n--- Processing Images ---\n")
 success_count <- 0
 skip_count    <- 0
 
+# First pass keeps the quicker scale-based path.
 for (img_path in img_files) {
   process_image(img_path, use_type_detection = FALSE, resize_mode = "scale")
 }
