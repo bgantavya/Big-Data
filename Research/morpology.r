@@ -220,6 +220,7 @@ for (img_path in img_files) {
   process_image(img_path, use_type_detection = FALSE, resize_mode = "scale")
 }
 
+# Second pass keeps the explicit type-aware branch.
 for (img_path in img_files) {
 
   nm   <- file_path_sans_ext(basename(img_path))
