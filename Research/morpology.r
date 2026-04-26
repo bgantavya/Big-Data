@@ -266,7 +266,7 @@ for (img_path in img_files) {
   gc()
 }
 
-# sumup
+# summary
 cat("\n============================================================\n")
 cat("Done!\n")
 cat("  Processed successfully:", success_count, "images\n")
