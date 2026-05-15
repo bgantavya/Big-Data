@@ -1,0 +1,22 @@
+# Configuration and constants for image processing
+
+MAGICK_MEMORY_LIMIT <- "8GiB"
+MAGICK_DISK_LIMIT   <- "15GiB"
+MAGICK_AREA_LIMIT   <- "4GiB"
+MAGICK_MAP_LIMIT    <- "4GiB"
+MAGICK_WIDTH_LIMIT  <- "50000"
+MAGICK_HEIGHT_LIMIT <- "50000"
+
+# Use the base directory set by main.r
+INPUT_FOLDER <- file.path(SCRIPT_BASE_DIR, "input")
+OUTPUT_FOLDER <- file.path(SCRIPT_BASE_DIR, "output")
+LAYOUT_KEYWORD <- "Layout"
+
+TARGET_WIDTH <- 5000
+OUTPUT_FORMAT <- "png"
+TARGET_DPI <- 1200
+CONTRAST_PASSES <- 2
+BRIGHTNESS <- 105
+SATURATION <- 108
+SHARPEN_STRENGTH <- 9
+
