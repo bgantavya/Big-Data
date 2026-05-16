@@ -109,6 +109,5 @@ build/
 !gradle-wrapper.jar
 
 # Output directories
-output/
 results/
 _output/

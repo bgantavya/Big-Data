@@ -13,7 +13,7 @@ install.packages("ragg")
 library(magick)
 library(tools)
 
-input_folder <- "./my_images"
+input_folder <- "./input"
 output_folder <- "./output"
 
 # Create output folder if it doesn't exist
