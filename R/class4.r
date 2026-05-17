@@ -51,5 +51,70 @@
 # print(v3)
 
 
-names<-c('Mridul', 'Jay', 'Gantavya')
-sort(names)
+#names<-c('Mridul', 'Jay', 'Gantavya')
+#sort(names)
+
+
+x <-c(10, 20, 30, 40)
+sum(x)
+max(x)
+mean(x)
+min(x)
+
+median(x)
+var(x)
+sd(x)
+
+
+si <- function(p, r=5, t=2) {
+  return((p*r*t) /100)
+}
+
+avg <- function(vec) {
+  mean(vec)
+}
+
+si(10, 1, 1)
+avg(c(1,2,3))
+
+sq <- function(n) {
+  return(n*n)
+}
+
+df <- data.frame(
+  Name = c("A", "B", "C"),
+  Marks = c(65, 75, 85)
+)
+result <- apply(df["Marks"], 2, sq)
+result
+
+cube <- function(n) return(n*n*n)
+cube(4)
+
+eo <- function(n) {
+  if(n%%2 == 0) return('even')
+  return('odd')
+}
+
+eo(1)
+
+
+min_max <- function(v) {
+  print(min(v))
+  print(max(v))
+}
+
+min_max(c(2,3,4,7,5,3,1))
+
+
+bill <- function(n) {
+  
+}
+
+
+fact <- function(n){
+  if(n == 1) return(1)
+  return(n * fact(n-1))
+}
+
+fact(2)
